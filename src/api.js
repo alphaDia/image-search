@@ -1,4 +1,4 @@
-import { createApi } from "unsplash-js";
+import  { createApi } from "unsplash-js";
 
 const queryPhotos = async (query, page = 1) => {
   const unsplash = createApi({ accessKey: process.env.REACT_APP_ACCESS_KEY });

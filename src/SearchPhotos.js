@@ -1,9 +1,12 @@
+import { useState } from "react";
 import styled from "styled-components";
 import Form from "./Form";
 import Container from "./Container";
 import Image from "./Image";
 import Profile from "./Profile";
 import Loader from "./Loader";
+import api from './api'
+
 
 const CardList = styled(Container)`
   margin: 80px auto;
@@ -26,18 +29,33 @@ const Card = styled(Container)`
 
 const SearchPhotos = (props) => {
 
-  const isEmpty = props.pics.length || "";
+  const [isFetching, setIsFetching] = useState(false);
+  const [pics, setPics] = useState([]);
+
+  const queryPhotos = async (query) => {
+    setIsFetching(true);
+    try {
+      const result = await api.queryPhotos(query);
+      setPics(result)
+    } catch (error) {
+      alert(error)
+    }
+
+    setIsFetching(false);
+  };
+
+  const isEmpty = pics.length || "";
 
   return (
     <>
-      <Form onsubmit={props.queryPhotos} />
+      <Form onsubmit={queryPhotos} />
 
-      {props.isFetching ? (
+      {isFetching ? (
         <Loader />
       ) : (
         isEmpty && (
           <CardList className="card-list">
-            {props.pics.map((pic, id) => (
+            {pics.map((pic, id) => (
               <Card className="card" key={id}>
                 <Image
                   className="card-image"

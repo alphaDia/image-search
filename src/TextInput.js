@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 const TextInput = styled((props) => (
   <input
+    placeholder='ex: programming dancing network'
     className={props.className}
     onChange={props.change}
     value={props.value}

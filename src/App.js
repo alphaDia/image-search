@@ -1,5 +1,6 @@
 import styled, { createGlobalStyle } from "styled-components";
-import Pictures from './Pictures'
+import SearchPhotos from './SearchPhotos'
+
 
 const Container = styled.div`
   width: 70%;
@@ -31,7 +32,7 @@ const App = () => {
   return (
     <Container>
       <GlobalStyle />
-      <Pictures />
+      <SearchPhotos />
     </Container>
   );
 };
